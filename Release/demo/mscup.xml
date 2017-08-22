@@ -1,0 +1,25 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Window title="REDirectUI Demo View">
+  <Resource>
+    <style targetName="button">cursor:hand; border:solid 1 red; color:black; margin:20 5; height:40</style>
+    <style targetName="button" targetState="hot">border:solid 1 blue; color:blue</style>
+    <StoryBoard id="ani">
+      <FrameSet targetType="float" target="d3d.entities[0].transform" targetAttribute="rotationY" 
+        reverse="false" repeat="forever" from="0" to="360" duration="2" />
+      <FrameSet targetType="float" target="d3d.entities[0].transform.posttransform" targetAttribute="rotationz" 
+        reverse="false" repeat="forever" from="0" to="360" duration="6" />
+    </>
+  </Resource>
+  <body style="background:white; padding:20 10; layout:vertical;">
+    <random style="font:微软雅黑 24;color:blue">2D/3D 混合测试</random>
+    <button onclick="stories['ani'].started?stories['ani'].stop('end'):stories['ani'].start()">启动/停止动画</button>
+    <button onclick="stories['ani'].paused?stories['ani'].resume():stories['ani'].pause()">暂停/恢复动画</button>
+    <d3d id="d3d" style="height:250;background:blue;" onload="stories['ani'].start()">
+      <scene LightEnabled="false"><camera position="0,0,-2" Ortho1="1" />
+        <DirectionLight Diffuse="0xffffffff" direction="0,0,1" />
+        <model src="mscup.x" Diffuse="#ffffffff" ambient1="ff000000" rotationy="45"></model>
+      </>
+      <div>这是一片云</dev>
+    </>
+  </body>
+</Window>

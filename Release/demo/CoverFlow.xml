@@ -1,0 +1,45 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Window title="REDirectUI Demo View">
+  <config transparent1="1" />
+  <Resources>
+    <script>
+      var cf = null;
+      $(function(){//debugger;
+        cf = new coverFlow(body.scene);
+        cf.relayout();
+      });
+    </script>
+    <css>
+      div { font:64; color:red; }
+      div#img3 { text-style:center middle; }
+      div#img { glowcolor:lightpink; glowthick:4; }
+      div#img4 { text-style:center bottom; }
+    </css>
+    
+    <image src="http://open.sinaimg.cn/wikipic/logo/LOGO_64x64.png" id="sina" />
+    <image src="倒霉.gif" id="dm" />
+    <image src="更倒霉.gif" id="gdm" />
+    <image src="http://www.downsc.com/wallpaper_pic/bizhi_iecool/13/13/b_img/3369.jpg" id="gx" />
+    <model name="quad" type="quad" onclick="cf.moveTo(currentEntity.parentIndex)" ondblclick="alert('dblclick')"
+      transform="scale:1.5 1 1"
+      parameters="Ambient:.8 .8 .8; Opacity1:.9">
+    </>
+  </Resources>
+  
+  <body style="background:blue; padding:40 50; layout:page;color:green" onload="//ani.start()" hittest-as="caption">
+    <scene as1="postcontent" mouselight=".2 .2 .2" mirror="1" onload=""><camera position="0,0,-10" Ortho1="1" />
+      <entity model="quad" texture="img" />
+      <entity model="quad" texture="img2" />
+      <entity model="quad" texture="img3" />
+      <entity model="quad" texture="img4" />
+      <entity model="quad" texture="img5" />
+    </>
+    
+    <div id="img" style="background:sina stretch;">新浪微博</>
+    <div id="img2" style="background:dm stretch;">倒霉的群主</>
+    <div id="img3" style="background:gdm maxfit;">这个更倒霉</>
+    <div id="img4" style="background:gx stretch;">漂亮的赛车</>
+    <img id="img5" src="cup.jpg" >不会显示的文字</>
+    <img id="img6" src="http://www.24qq.cn/upimg/allimg/070716/01153337.gif" />
+  </body>
+</Window>

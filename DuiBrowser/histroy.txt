@@ -1,0 +1,35 @@
+V 1.1.9
+==============
+- 局部优化
+
+V 1.1.8
+==============
+- 示例代码支持版本检测，如果引擎版本低于代码中指定的版本，将提出警告
+- 简化了导航树XML的写法
+- 文章中指向其它文章的链接可自动处理。
+
+V 1.1.7
+==============
+- 添加表达式计算，可随时查看DOM状态
+
+V 1.1.6
+==============
+- 做了一点优化，减了一点肥
+
+V 1.1.5
+==============
+- 添加自动化支持，可在网页中通过 object 标签访问运行中的 duibrowser，方便自动化演示。
+	标签示例： <object id="abc" classid="clsid:25829CD1-10CF-477C-A34F-E92E82FBABA0" width="0" height="0"></object>
+	这个语句已经放在 hack.js 文件里了，一旦此文件执行，将执行某些钩子，替换掉浏览器提供的 ActiveXObject 函数，从而避免权限不足的问题。
+	自动化方法：
+		duiBrowser.load(xml) - 加载一段 XML 代码
+		duiBrowser.loadUrl(url) - 加载一个通过 URL 指定的 XML 文件
+		duiBrowser.activate([url]) - 激活 DuiBrowser 的展示窗口，可选提供一个 URL 路径
+		duiBrowser.version - 读取 DuiBrowser 的当前版本号（字符串），例如 1.1.5.0
+		duiBrowser.visible - 查看 DuiBrowser 的窗口是否可视
+	HACK 方法：
+		duiBrowser.axo - hack ActiveXObject
+		duiBrowser.httpLoad - 无权限限制的加载任何URL文件，如果提供了回调则使用异步，否则同步下载且函数返回内容字符串
+- 支持在命令行参数中指定加载的 XML 文件路径，例如 duibrowser.exe "demo.xml"。
+- 支持进程单实例，防止启动多个演示进程。当第二个进程启动时，将激活第一个实例，如果第二个进程命令行中指定了 XML 路径，也将在第一个实例中加载。
+- 解决演示窗口被用户关闭后不能再打开的问题

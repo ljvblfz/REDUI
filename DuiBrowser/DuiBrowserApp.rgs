@@ -1,0 +1,23 @@
+HKCR
+{
+	DuiBrowser.1 = s 'DuiBrowser Class'
+	{
+		CLSID = s '{25829CD1-10CF-477C-A34F-E92E82FBABA0}'
+	}
+	DuiBrowser = s 'DuiBrowser Class'
+	{
+		CLSID = s '{25829CD1-10CF-477C-A34F-E92E82FBABA0}'
+		CurVer = s 'DuiBrowser.1'
+	}
+	NoRemove CLSID
+	{
+		ForceRemove {25829CD1-10CF-477C-A34F-E92E82FBABA0} = s 'DuiBrowser Class'
+		{
+			ProgID = s 'DuiBrowser.1'
+			VersionIndependentProgID = s 'DuiBrowser'
+			ForceRemove 'Programmable'
+			LocalServer32 = s '%MODULE%'
+			'TypeLib' = s '{12B5F6D9-BF72-4E06-9927-AF8AE8FF576A}'
+		}
+	}
+}

@@ -1,0 +1,44 @@
+// DuiBrowserAuto.idl : DuiBrowserAuto 的 IDL 源
+//
+
+// 此文件将由 MIDL 工具处理以
+// 产生类型库(DuiBrowserAuto.tlb)和封送处理代码。
+
+import "oaidl.idl";
+import "ocidl.idl";
+
+[
+	object,
+	uuid(DB45424B-52F4-401A-85AF-14493A7EE3F0),
+	dual,
+	nonextensible,
+	helpstring("IDuiBrowserApp 接口"),
+	pointer_default(unique)
+]
+interface IDuiBrowserApp : IDispatch{
+	[id(1), helpstring("方法load")] HRESULT load([in] BSTR xml);
+	[id(2), helpstring("方法loadUrl")] HRESULT loadUrl([in] BSTR url);
+	[id(3), helpstring("方法activate")] HRESULT activate([in, optional]VARIANT* vUrl);
+	//[propget, id(4), helpstring("属性 version")] HRESULT version([out, retval] BSTR* pVal);
+	[propget, id(5), helpstring("属性 visible")] HRESULT visible([out, retval] VARIANT_BOOL* pVal);
+	//[id(6), helpstring("方法axo")] HRESULT axo([in] BSTR progid, [out,retval] IDispatch** obj);
+	//[id(7), helpstring("方法httpLoad")] HRESULT httpLoad([in] BSTR url, [in] VARIANT success, [out,retval] VARIANT* ret);
+	//[id(8), helpstring("Method fileVersion")] HRESULT fileVersion([in] BSTR path, [out,retval] BSTR* pVal);
+};
+[
+	uuid(12B5F6D9-BF72-4E06-9927-AF8AE8FF576A),
+	version(1.0),
+	helpstring("DuiBrowser 1.0 typelib")
+]
+library DuiBrowserAutoLib
+{
+	importlib("stdole2.tlb");
+	[
+		uuid(25829CD1-10CF-477C-A34F-E92E82FBABA0),
+		helpstring("DuiBrowser Class")
+	]
+	coclass DuiBrowser
+	{
+		[default] interface IDuiBrowserApp;
+	};
+};

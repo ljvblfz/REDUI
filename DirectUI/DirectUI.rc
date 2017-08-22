@@ -1,0 +1,155 @@
+// Microsoft Visual C++ generated resource script.
+//
+#include "resource.h"
+
+#define APSTUDIO_READONLY_SYMBOLS
+/////////////////////////////////////////////////////////////////////////////
+//
+// Generated from the TEXTINCLUDE 2 resource.
+//
+#ifndef APSTUDIO_INVOKED
+#include "targetver.h"
+#endif
+#include "winres.h"
+
+/////////////////////////////////////////////////////////////////////////////
+#undef APSTUDIO_READONLY_SYMBOLS
+
+/////////////////////////////////////////////////////////////////////////////
+// 中文(中华人民共和国) resources
+
+#if !defined(AFX_RESOURCE_DLL) || defined(AFX_TARG_CHS)
+#ifdef _WIN32
+LANGUAGE LANG_CHINESE, SUBLANG_CHINESE_SIMPLIFIED
+#pragma code_page(936)
+#endif //_WIN32
+
+#ifdef APSTUDIO_INVOKED
+/////////////////////////////////////////////////////////////////////////////
+//
+// TEXTINCLUDE
+//
+
+1 TEXTINCLUDE 
+BEGIN
+    "resource.h\0"
+END
+
+2 TEXTINCLUDE 
+BEGIN
+    "#ifndef APSTUDIO_INVOKED\r\n"
+    "#include ""targetver.h""\r\n"
+    "#endif\r\n"
+    "#include ""winres.h""\r\n"
+    "\0"
+END
+
+3 TEXTINCLUDE 
+BEGIN
+    "1 TYPELIB ""DirectUI.tlb""\r\n"
+    "\0"
+END
+
+#endif    // APSTUDIO_INVOKED
+
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// Version
+//
+
+VS_VERSION_INFO VERSIONINFO
+ FILEVERSION 0,9,130,0
+ PRODUCTVERSION 0,9,130,0
+ FILEFLAGSMASK 0x3fL
+#ifdef _DEBUG
+ FILEFLAGS 0x1L
+#else
+ FILEFLAGS 0x0L
+#endif
+ FILEOS 0x4L
+ FILETYPE 0x2L
+ FILESUBTYPE 0x0L
+BEGIN
+    BLOCK "StringFileInfo"
+    BEGIN
+        BLOCK "040904b0"
+        BEGIN
+            VALUE "CompanyName", "Yuhan Studio"
+            VALUE "FileDescription", "Rendering Engine Core for DirectUI"
+            VALUE "FileVersion", "0, 9, 130, 0"
+            VALUE "InternalName", "REDUI"
+            VALUE "LegalCopyright", "Copyright (C) 2009 Yuhan Studio"
+            VALUE "OriginalFilename", "redui.dll"
+            VALUE "ProductName", "Rendering Engine for DirectUI"
+            VALUE "ProductVersion", "0, 9, 130, 0"
+        END
+        BLOCK "080403a8"
+        BEGIN
+            VALUE "CompanyName", "雨寒工作室"
+            VALUE "FileDescription", "Rendering Engine for DirectUI"
+            VALUE "FileVersion", "0, 9, 130, 0"
+            VALUE "InternalName", "REDUI"
+            VALUE "LegalCopyright", "版权所有 (C) 2009 雨寒工作室"
+            VALUE "OriginalFilename", "redui.dll"
+            VALUE "ProductName", "多用途 DirectUI 渲染模块，内置带JS脚本的布局解析器和DOM模型，支持纯3D渲染，支持直接API调用、支持外部扩展、支持创建为ActiveX。"
+            VALUE "ProductVersion", "0, 9, 130, 0"
+        END
+    END
+    BLOCK "VarFileInfo"
+    BEGIN
+        VALUE "Translation", 0x409, 1200, 0x804, 936
+    END
+END
+
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// REGISTRY
+//
+
+IDR_DIRECTUI            REGISTRY                "DirectUI.rgs"
+IDR_DUICONTROL          REGISTRY                "DuiControl.rgs"
+IDR_OLEDUIWINDOW        REGISTRY                "OleDuiWindow.rgs"
+IDR_DUIEVENT            REGISTRY                "DuiEvent.rgs"
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// SYSTEM
+//
+
+EFFECT                  SYSTEM                  "system.fx"
+COMMON                  SYSTEM                  "system\\common.fx"
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// HTML
+//
+
+SYSTEM.JS               HTML                    "system.js"
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// String Table
+//
+
+STRINGTABLE 
+BEGIN
+    IDS_PROJNAME            "REDirectUI"
+END
+
+#endif    // 中文(中华人民共和国) resources
+/////////////////////////////////////////////////////////////////////////////
+
+
+
+#ifndef APSTUDIO_INVOKED
+/////////////////////////////////////////////////////////////////////////////
+//
+// Generated from the TEXTINCLUDE 3 resource.
+//
+1 TYPELIB "DirectUI.tlb"
+
+/////////////////////////////////////////////////////////////////////////////
+#endif    // not APSTUDIO_INVOKED
+

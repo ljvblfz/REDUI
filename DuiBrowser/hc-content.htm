@@ -1,0 +1,276 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+
+<head>
+	<meta http-equiv="content-type" content="text/html; charset=utf-8" />
+	<link href="helpcenter.css" rel="StyleSheet" type="text/css" />
+	<link href="http://www.huyuhan.com/helpcenter.css" rel="StyleSheet" type="text/css" />
+  <link href="modules/syntaxhighlight/styles/shCore.css" rel="StyleSheet" type="text/css" />
+  <link href="modules/syntaxhighlight/styles/shThemeDjango.css" rel="StyleSheet" type="text/css" />
+  
+	<style type="text/css">
+		body { font-size: 13px; font-family:微软雅黑,宋体; }
+		#header { font-size: 12px; }
+		.tool, #status { float:right; margin-left:4px; }
+		.tool { color:red; cursor:pointer; text-decoration:underline; display:none; }
+		#status { color:Purple; background-color:Yellow; }
+		.codetool { cursor:pointer;color:blue; padding-right:5px; }
+		.codetool:hover { color:Red; }
+	</style>
+	<script language=javascript src="hack.js"></script>
+	<script language=javascript src="modules/jquery/jquery-1.4.1.js"></script>
+	<script language=javascript src="modules/htmlparser/htmlparser.js"></script>
+	<!--<script language=javascript src="modules/stree/stree.js"></script>-->
+	<script language=javascript src="modules/syntaxhighlight/shcore.js"></script>
+	<script language=javascript src="modules/syntaxhighlight/shbrushxml.js"></script>
+
+	<script language=javascript>
+//		function request(paras){
+//			var url = location.href;
+//			var paraString = url.substring(url.indexOf("?")+1,url.length).split("&");
+//			var paraObj = {}
+//			for (i=0; j=paraString[i]; i++){
+//				paraObj[j.substring(0,j.indexOf("=")).toLowerCase()] = j.substring(j.indexOf("=")+1,j.length);
+//			}
+//			var returnValue = paraObj[paras.toLowerCase()];
+//			return returnValue ? decodeURI(returnValue) : "";
+//			if(typeof(returnValue)=="undefined"){
+//				return "";
+//			}else{
+//				return decodeURI(returnValue);
+//			}
+//		}
+//		
+		//top.context.cwin = window;
+		var queries = {};
+
+		(function request(){
+			var url = location.href;
+			if (url.indexOf("?")<0) return;
+			var paraString = url.substring(url.indexOf("?")+1,url.length).split("&");
+			for (i=0; j=paraString[i]; i++){
+				queries[j.substring(0,j.indexOf("=")).toLowerCase()] = decodeURIComponent(j.substring(j.indexOf("=")+1,j.length));
+			}
+		})();
+		
+		// 缓存导航窗口信息
+		var pos = top.context.lastPosition;
+		
+		// 监视代码点击
+		$(function(){
+			// 监视文章中的超链接
+			$('a[artid]').live('click', function() {
+				top.context.update($(this).attr('artid'));
+				window.location.reload();
+			});
+			
+			$('.browsenow').live('click', function(){
+				var _this = $(this);
+				try {
+					// 检测代码版本
+					var code = _this.parent().attr('code');
+					var match = /\s+minver\s*=\s*(?:["']\s*)?(\d+(?:\.\d+)*)[^\.\d]+/.exec(code);
+					if (match) {
+						var vfile = match[1];
+						match = vfile.split('.');
+						var svcore = duiBrowser.coreVersion;
+						var vcore = svcore.split('.');
+						
+						var b = 0;
+						if (b==0 && match.length>=1) b = (vcore[0]-match[0]);
+						if (b==0 && match.length>=2) b = (vcore[1]-match[1]);
+						if (b==0 && match.length>=3) b = (vcore[2]-match[2]);
+						if (b<0 && !confirm('运行此示例代码所需要的 redui.dll 版本(' + svcore + ')低于示例代码中要求的最低版本('
+								+ vfile + ')，可能会导致工作不正确，建议您升级到最新版本。\r\n\r\n您是否要强制在当前版本中执行此示例代码？'
+							))
+							return;
+					}
+					
+					duiBrowser.load(code);
+					duiBrowser.activate();
+				} catch(e) { alert('无法连接到 DuiBrowser。'); }
+			});
+			
+			$('.savenow').live('click', function(){
+				var _this = $(this);
+				try {
+					var succ = duiBrowser.writeToFile(_this.parent().attr('code'), $.map(pos.slice(0,-1), function(a){
+						return a.attr('_text');
+					}).reverse(), '__auto__');
+					alert(succ?'保存成功，您需要刷新导航树才能显示缓存内容。':'保存失败，请检查是否有足够的文件操作权限。');
+				} catch(e) { alert('无法连接到 DuiBrowser。'); }
+			});
+			
+			$('#save_html').click(function(e){
+				try {
+					var succ = duiBrowser.writeToFile($(this).attr('data'), $.map(pos.slice(0,-1), function(a){
+						return a.attr('_text');
+					}).reverse());
+					alert(succ?'保存成功，您需要刷新导航树才能显示缓存内容。':'保存失败，请检查是否有足够的文件操作权限。');
+				} catch(err) { alert('不能保存文件。'); }
+			});
+		});
+		
+		// 处理顶部信息
+		$(function(){
+			if (!pos || !pos.length || pos.length==0) {
+				$('#position').text('请选择您需要的内容。');
+				return;
+			}
+			
+			$('#position').html('当前位置： ' + $.map(pos, function(a){
+				return '<span style="color:blue;">' + a.attr('_text') + '</span>';
+			}).reverse().join('&nbsp;-&nbsp;'));
+		});
+		
+		// 加载内容
+		$(function(){
+			if (!pos || !pos.length || pos.length==0) {
+				$('#content').html('<p>您需要从导航窗口中选择您希望查看的内容。部分内容需要从互联网读取，在使用在线资源时请确保网络连接正常。</p><p>如果您对于使用本帮助中心有困难，请联系技术支持！</p>');
+				return;
+			}
+			
+			$('#status').text('Loading...');
+
+			if (!top.context.codeOnly) {
+				$.post(top.context.href||pos[0].attr('href'), function(data){
+					// 首先尝试直接解析HTML数据，以提高性能
+					try {
+						var results = '';
+						var counters = [0,0,0]; // index:0-extern; 1-inner; 2-deny
+						var curIndex = 0; // start with extern
+						HTMLParser(data, {
+							start: function(tag, attrs, unary) {
+								// 寻找class属性，寻找是否有 dui_content dui_deny 类型
+								var isContent=false, isDeny=false;
+								for (var i=0; i<attrs.length; i++) {
+									if (attrs[i].name=='id' && attrs[i].escaped=='dui_content')
+										isContent = true;
+									else if (attrs[i].name=='class') {
+										var classes = attrs[i].escaped.split(' ');
+										for (var j=0; j<classes.length; j++) {
+											if (classes[j]=='dui_content') isContent = true;
+											/*else */if (classes[j]=='dui_deny') {
+												isDeny = true;
+												break;
+											}
+										}
+									}
+								}
+								
+								if (isContent && curIndex==0)
+									curIndex = 1;
+								else if (isDeny && curIndex==1)
+									curIndex = 2;
+								
+								counters[curIndex] ++;
+								if (curIndex==1) {
+									results += "<" + tag;
+							
+									for ( var i = 0; i < attrs.length; i++ )
+										results += " " + attrs[i].name + '="' + attrs[i].escaped + '"';
+							
+									results += (unary ? "/" : "") + ">";
+								}
+								
+								if (unary) {
+									counters[curIndex] --;
+									if (counters[curIndex] == 0) curIndex--;
+								}
+							},
+							end: function(tag) {
+								if (curIndex==1)
+									results += "</" + tag + ">";
+								
+								counters[curIndex] --;
+								if (counters[curIndex] == 0) curIndex--;
+							},
+							chars: function(text) {
+								if (curIndex==1)
+									results += text;
+							},
+							comment: function(text) {
+								if (curIndex==1)
+									results += "<!--" + text + "-->";
+							}
+						});
+						if (results)
+							data = '<div id="__helpcenter">' + results + '</div>';
+					} catch(e) { }
+				
+					// 缓存数据
+					if (!top.context.isLocal)
+						$('#save_html').attr('data',data).show();
+						
+					data = $(data);
+					
+					// 先删除禁止显示的内容(class='dui_deny')
+					data.find('.dui_deny').remove();
+					
+					// 显示专为本页面设计的内容(class='dui_only')
+					data.find('.dui_only').show();
+					
+					// 首先寻找是否存在 id='dui_content' 或 class='dui_content'
+					var content = data.is('#__helpcenter') ? data : data.find('#__helpcenter');
+					
+					// 再寻找 BODY
+//					if (content.length==0)
+//						content = data.find('body');
+
+					// 开始替换
+					$('#content').html('Processing...');	
+					
+					// 有 artid 属性的超链接的 HREF 属性
+					content.find('a[artid]').attr('href','javascript:void();');
+					
+					// 添加“用 DuiBrowser 观看”按钮
+					content.find('pre[title="code"]').each(function(){
+						var tools = '<span class="browsenow" title="在 DuiBrowser 中观看">用 DuiBrowser 观看</span>';
+						if (!top.context.isLocal) tools += '<span class="savenow" title="把示例代码缓存到本地">保存代码</span>';
+						$(tools).addClass('codetool')
+							.appendTo($('<div/>').attr('code',$(this).text().replace(/\r/g,'\r\n')).insertAfter($(this).parent('div')));
+					});
+					
+					// 读取内容
+					$('#content').html(content.html());
+								
+					// 高亮代码
+					//SyntaxHighlighter.config.clipboardSwf = 'modules/syntaxhighlight/clipboard.swf';
+					SyntaxHighlighter.highlight();
+					
+					$('#status').text('');
+				});
+			
+			// now read code file only
+			} else {
+				$.post(top.context.href||pos[0].attr('href'), function(code){
+					$('#content').html(
+						'<p>以下代码来自本地文件，您无法看到效果图，只能通过 DuiBrowser 直接查看效果。</p>'
+						)
+						.append($('<div/>').append($('<pre class="brush:xml;" title="code"></pre>').text(code)))
+						.append($('<div/>').attr('code',code).append($('<span class="browsenow" title="在 DuiBrowser 中观看">用 DuiBrowser 观看</span>').addClass('codetool')));
+					
+					// 高亮代码
+					SyntaxHighlighter.highlight();
+
+					$('#status').text('');
+				});
+			}
+		});
+	</script>
+</head>
+
+<body>
+	<!-- header(position/status/tools) -->
+	<div id="header">
+		<span id="position"></span>
+		<span id="status"></span>
+		<span id="save_html" class="tool" title="在本地缓存当前页面">保存到本地</span>
+	</div>
+	<hr />
+	
+	<!-- content -->
+	<div id="content"></div>
+</body>
+</html>

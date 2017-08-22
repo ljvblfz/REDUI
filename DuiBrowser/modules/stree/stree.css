@@ -1,0 +1,45 @@
+﻿.stree {
+	font-family: Verdana, Geneva, Arial, Helvetica, sans-serif;
+	font-size: 11px;
+	color: #666;
+	white-space: nowrap;
+	overflow: visible;
+}
+.stree img.tree-icon {
+	border: 0px;
+	vertical-align: middle;
+	cursor:default;
+}
+.stree .tree-node {
+	color: #333;
+	/*text-decoration: none;*/
+	white-space: nowrap;
+	/*padding: 1px 2px 1px 2px;*/
+	/*cursor: pointer;*/
+	overflow: visible;
+	display:block;
+}
+.stree .tree-node > img.tree-lasticon
+{
+	margin-right: 2px;
+}
+.stree .tree-node > .tree-content
+{
+	color: #333;
+	cursor: pointer;
+	display: inline;
+}
+.stree .tree-node > .tree-content:hover {
+	background-color: #c0d2ec;
+	/*text-decoration: underline;*/
+}
+.stree .tree-node > .tree-content > .tree-toolbar {	display: none; /*padding-left:10px; float:right;*/ }
+.stree .tree-node > .tree-content:hover > .tree-toolbar { display:inline; }
+.stree .tree-node > .tree-content:hover > .tree-toolbar > .tree-toolbar-button { text-decoration:none; color:Gray; padding:0 4px 0 4px; }
+.stree .tree-node > .tree-content:hover > .tree-toolbar > .tree-toolbar-button:hover { text-decoration:underline; color:blue; }
+.stree .selected {
+	background-color: #c0d2ec;
+}
+.stree .tree-parent 
+{
+}	

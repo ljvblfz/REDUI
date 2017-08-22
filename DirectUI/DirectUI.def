@@ -1,0 +1,86 @@
+; DirectUI.def : 定义模块参数。
+
+LIBRARY      "redui.DLL"
+
+EXPORTS
+	;DllCanUnloadNow		PRIVATE
+	;DllGetClassObject	PRIVATE
+	;DllRegisterServer	PRIVATE
+	;DllUnregisterServer	PRIVATE
+	;DllInstall		PRIVATE
+	
+	; plugins
+	RegisterPlugin
+	UnregisterPlugin
+	IsPlugin
+	CallNextPlugin
+	CallDefault
+	
+	; visual
+	GetDefaultVisual
+	DefPaintBorder
+	DefPaintFocus
+	DefPaintBackground
+	DefPaintForeground
+	
+	; layout
+	GetDefaultLayout
+	DefUpdateLayout
+	
+	; window
+	CreateDirectUIWindowA
+	CreateDirectUIWindowW
+	IsDirectUIMessage
+	IsDirectUIWindow
+	GetRootElement
+	GetElementById
+	SetDirectUIWindowExternal
+	ParseStyle
+	CalcScriptExpressionA
+	CalcScriptExpressionW
+	
+	; helper
+	StreamFromUrl
+	BstrFromStream
+	
+	; markup parser
+	;DefParseMarkup
+	
+	; DuiElement
+	DuiIsElement	
+	DuiGetContainerHwnd
+	DuiGetExtensionContainer
+	DuiGetParent		
+	DuiGetTopParent		
+	DuiGetID			
+	DuiGetText			
+	DuiSetText			
+	DuiGetToolTip		
+	DuiSetTooTip		
+	DuiGetShortcut		
+	DuiSetShortcut		
+	DuiGetState			
+	DuiModifyState		
+	DuiHasState			
+	DuiIsVisible		
+	DuiSetVisible		
+	DuiIsEnabled		
+	DuiSetEnabled		
+	DuiIsFocused		
+	DuiSetFocus			
+	DuiInvalidate		
+	DuiGetRect			
+	DuiGetClientRect	
+	DuiGetChildCount	
+	DuiGetChild			
+	DuiRemoveChild		
+	DuiRemoveAllChildren
+	DuiSetInnerXML		
+	DuiSetOuterXML		
+	DuiGetRegion		
+	DuiGetAttribute		
+	DuiGetAttributeString
+	DuiSetAttribute		
+	DuiSetAttributeString
+	DuiRemoveAttribute	
+	

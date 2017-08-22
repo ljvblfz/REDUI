@@ -1,0 +1,11 @@
+HKCR
+{
+	NoRemove AppID
+	{
+		'%APPID%' = s 'DirectUI'
+		'DirectUI.DLL'
+		{
+			val AppID = s '%APPID%'
+		}
+	}
+}

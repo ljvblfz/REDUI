@@ -1,0 +1,22 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+
+<head>
+  <meta http-equiv="content-type" content="text/html; charset=utf-8" />
+  <title>REDirectUI Help Center</title>
+  <hta:application id="dui_helpcenter" applicationname="REDirectUI Help Center" caption="yes" icon="" 
+			maximizebutton="yes" minimizebutton="yes" showintaskbar="yes" singleinstance="yes" sysmenu="yes" version="1.0" windowState="normal" 
+			navigable="yes" />
+	<!--<style type="text/css">
+		body { margin:0; }
+	</style>-->
+	<script language=javascript>
+		window.context = {};
+	</script>
+</head>
+<frameset id="root" border=0 frameSpacing=5 frameborder=1 cols="20%,*" borderColor="#A1C7F9">
+	<frame name="hc_navigate" src="hc-navigate.htm" frameBorder=no scrolling=auto application=yes />
+  <frame name="hc_content" src="hc-content.htm" frameBorder=no scrolling=auto application="yes" />
+</frameset>
+</html>

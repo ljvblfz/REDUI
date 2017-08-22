@@ -1,0 +1,45 @@
+/*
+	网站文章和帮助中心共用
+*/
+
+#dui_content {}
+
+.dui_deny {}
+
+.dui_only { display:none; }
+
+/* 文章中的各个部分
+ - 文章标题 .dui_article_title
+ - 文章概述 .dui_article_overview
+ - 节标题 .dui_section_title
+ - 节细节 .dui_section_detail
+ */
+ 
+.dui_article_title
+{
+	display: block;
+	font-weight: bold;
+	font-size: large;
+}
+.dui_article_overview
+{
+	display: block;
+}
+.dui_section_title
+{
+	display: block;
+	font-weight: bold;
+	font-size: larg;
+}
+.dui_section_detail
+{
+	display: block;
+	margin-left: 40px;
+}
+.dui_section_detail table {}
+.dui_section_detail table td
+{
+	padding: 2px;
+	vertical-align: top;
+	background-color: #E0E0E0/*silver;*/
+}

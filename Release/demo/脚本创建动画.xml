@@ -1,0 +1,79 @@
+﻿ <Window title="REDirectUI Demo View">
+  <Config transparent1="1" d3d="1"></Config>
+   <Resource>
+    <Style targetName="anchor" targetState="hot" >background:#44fedcba</Style>
+    <Style targetName="button" >color:red;margin1:20 5 20 0;font:20</Style>
+	<script>
+		var animEvent = {
+			onstart: function(){e.text += this.name + ' started!\n';},
+			onstop: function(){e.text += this.name + ' stopped!\n';},
+			onpause: function(){e.text += this.name + ' paused!\n';},
+			onresume: function(){e.text += this.name + ' resumed!\n';}
+		};
+		
+		$(function() {
+			clr = new StoryBoard().name('clr').addTo(window).newFrameSet(
+				new FrameSet().targetType('float').target(body.children[0].get('background')).targetAttribute('y').reverse(true).repeat('forever').from(0.6).to(1).duration(1)
+			).newFrameSet(
+				new KeyFrameSet().targetType('color').target(body.children[4]).targetAttribute('background').reverse('closure').repeat('forever')//.spline(true)
+				.newKeyFrame(new KeyFrame().Time(3).Value(new Color(1,0,0,0.2)))
+				.newKeyFrame(new KeyFrame().Time(1.5).Value(new Color(0,1,0,0.6)))
+				.newKeyFrame(new KeyFrame().Time(3.5).Value(new Color(0,0,1,0.4)))
+			)
+			.eventHandler(animEvent)
+			.start();
+			
+			// 演示From/To/By动画的函数
+			ftb = new StoryBoard().name('FTB') // 创建演示板
+			.addTo(window) // 添加演示板至窗口
+			// 在演示板中添加两个FROM/TO/BY动画帧
+			.newFrameSet(
+				// 此动画帧控制 myimg 控件的 left 属性，类型为整数，在5秒内使其值从0变成120，自动回转，动画不停止
+				new FrameSet().TargetType('int').Target(myimg).TargetAttribute('left').Reverse(true).Repeat('forever').From(0).To(120).Duration(5)
+			)
+			.newFrameSet(
+				// 此动画帧控制 myimg 控件的 top 属性，类型为整数，在8.2秒内使其值从20变成120，自动回转，动画不停止
+				new FrameSet().TargetType('int').Target(myimg).TargetAttribute('top').Reverse(true).Repeat('forever').From(20).To(120).Duration(8.2)
+			)
+			.eventHandler(animEvent)
+			.start(); // 启动演示板动画
+			
+			// 演示关键帧动画的函数
+			k = new StoryBoard().name('keyframe') // 创建演示板
+			.addTo(window) // 添加演示板至窗口
+			// 创建两个关键帧集，分别控制 myimg2 控件的left和top属性
+			.newFrameSet(
+				// 此关键帧集控制 myimg2 控件的 left 属性，类型为整数，带样条的闭合回转，动画不停止
+				new KeyFrameSet().TargetType('int').Target(myimg2).TargetAttribute('left').Reverse('closure').Repeat('forever').Spline(true)
+				// 关键帧集添加 4 个关键帧，时间从 0 到 5 秒，关键帧的值从 120 到 250
+				.newKeyFrame(new KeyFrame().KeyTime(0).KeyValue(120))
+				.newKeyFrame(new KeyFrame().KeyTime(2).KeyValue(140))
+				.newKeyFrame(new KeyFrame().KeyTime(3).KeyValue(230))
+				.newKeyFrame(new KeyFrame().KeyTime(4).KeyValue(200))
+				.newKeyFrame(new KeyFrame().KeyTime(5).KeyValue(250))
+			)
+			.newFrameSet(
+				// 此关键帧集控制 myimg2 控件的 top 属性，类型为整数，带样条的闭合回转，动画不停止
+				new KeyFrameSet().TargetType('int').Target(myimg2).TargetAttribute('top').Reverse('closure').Repeat('forever').Spline(true)
+				// 关键帧集添加 4 个关键帧，时间从 0 到 13 秒，关键帧的值从 120 到 250
+				.newKeyFrame(new KeyFrame().KeyTime(0).KeyValue(120))
+				.newKeyFrame(new KeyFrame().KeyTime(1.5).KeyValue(170))
+				.newKeyFrame(new KeyFrame().KeyTime(5).KeyValue(150))
+				.newKeyFrame(new KeyFrame().KeyTime(11).KeyValue(200))
+				.newKeyFrame(new KeyFrame().KeyTime(13).KeyValue(250))
+			)
+			.eventHandler(animEvent)
+			.start(); // 启动演示板动画
+		});
+	</script>
+  </Resource>
+  <body style="padding:20 10;border:red;margin:0;layout:vertical;font:微软雅黑 30">
+    <a background="yellow" background-alpha="215" hittest-as="caption" 3d-target="1">沉舟侧畔千帆过</a>
+	<div style="layout:tile;columns:3"><button onclick="if(ftb.paused){ftb.resume();this.text='暂停From/To/By动画';}else{ftb.pause();this.text='恢复From/To/By动画';}">暂停From/To/By动画</button><button onclick="myimg.set('z-index',myimg.get('z-index')>=0?-2:0);">置后/置前</>
+	<button style="visual:h_gradient" gradient-color="Coral ccc MediumSlateBlue" onclick="if(k.paused){k.resume();this.text='暂停关键帧动画';}else{k.pause();this.text='恢复关键帧动画';}">暂停关键帧动画</button></div>
+<img id="myimg" src="倒霉.gif" src1="http://www.huyuhan.net/images/stories/articles.jpg" style="position:absolute;z-index:-2;" />
+<img id="myimg2" src="http://open.sinaimg.cn/wikipic/logo/LOGO_64x64.png" style="position:absolute;z-index:1" />
+    <a style="text-style:center middle">病<big>树<big>前<big>头</big>万</big>木</big>春<hr width="50" /><br />病<small>树<small>前<small>头</small>万</small>木</small>春</a>
+     <edit id="e" background="#dddddd" background-alpha="115" height="150" font="14" color="purple" edit-style="readonly multiline wordwrap richtext hideselction"></edit>
+   </body>
+</Window>

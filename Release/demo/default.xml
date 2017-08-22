@@ -1,0 +1,23 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Window title="REDirectUI Demo View">
+  <Resource>
+    <StyleSheet>
+      button {cursor:hand; border:solid 1 red; color:black; margin:20 5; height:40}
+      button :hot {border:solid 1 blue; color:blue}
+    </StyleSheet>
+  </Resource>
+  <body style="background:white; padding:20 10; layout:vertical;">
+    <random>
+      Hi all, I am <font color="blue">REDirectUI</font>, a rendering engine for DirectUI.<br />
+      I was born in China, please visit <a href="http://www.huyuhan.com/" title="Yuhan Studio(雨寒工作室)">our site</a>.<br />
+      <hr />
+      This is only our DirectUI demo show. You can change this content by editing XML code in the DuiBrowser dialog.
+    </random>
+    <button onclick="alert('\''+text+'\' has been clicked.')">Windows theme button</button>
+    <button style="visual:h_gradient" gradient-color="Coral White MediumSlateBlue" onclick="alert('\''+text+'\' has been clicked.')">horizontal gradient button</button>
+    <button style="visual:v_gradient" gradient-color="#E5E6E7 #383940" onclick="alert('\''+text+'\' has been clicked.')">vertical gradient button</button>
+    <button style="visual:cmdlink" onclick="alert('\''+text+'\' has been clicked.')">cmdlink button</button>
+    <option>radio option button</option>
+    <checkbox checked="1">checkbox button</checkbox>
+  </body>
+</Window>

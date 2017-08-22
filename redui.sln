@@ -1,0 +1,39 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 10.00
+# Visual Studio 2008
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "redui", "DirectUI\DirectUI.vcproj", "{CEA57B4B-67DD-4054-BD73-6547349FAED6}"
+EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "DuiBrowserAuto", "DuiBrowser\DuiBrowserAuto.vcproj", "{860FA172-F9B4-4880-BA87-DC33F3823079}"
+	ProjectSection(ProjectDependencies) = postProject
+		{CEA57B4B-67DD-4054-BD73-6547349FAED6} = {CEA57B4B-67DD-4054-BD73-6547349FAED6}
+	EndProjectSection
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Win32 = Debug|Win32
+		DebugNo3d|Win32 = DebugNo3d|Win32
+		Release|Win32 = Release|Win32
+		ReleaseNo3d|Win32 = ReleaseNo3d|Win32
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{CEA57B4B-67DD-4054-BD73-6547349FAED6}.Debug|Win32.ActiveCfg = Debug|Win32
+		{CEA57B4B-67DD-4054-BD73-6547349FAED6}.Debug|Win32.Build.0 = Debug|Win32
+		{CEA57B4B-67DD-4054-BD73-6547349FAED6}.DebugNo3d|Win32.ActiveCfg = DebugNo3d|Win32
+		{CEA57B4B-67DD-4054-BD73-6547349FAED6}.DebugNo3d|Win32.Build.0 = DebugNo3d|Win32
+		{CEA57B4B-67DD-4054-BD73-6547349FAED6}.Release|Win32.ActiveCfg = Release|Win32
+		{CEA57B4B-67DD-4054-BD73-6547349FAED6}.Release|Win32.Build.0 = Release|Win32
+		{CEA57B4B-67DD-4054-BD73-6547349FAED6}.ReleaseNo3d|Win32.ActiveCfg = ReleaseNo3d|Win32
+		{CEA57B4B-67DD-4054-BD73-6547349FAED6}.ReleaseNo3d|Win32.Build.0 = ReleaseNo3d|Win32
+		{860FA172-F9B4-4880-BA87-DC33F3823079}.Debug|Win32.ActiveCfg = Debug|Win32
+		{860FA172-F9B4-4880-BA87-DC33F3823079}.Debug|Win32.Build.0 = Debug|Win32
+		{860FA172-F9B4-4880-BA87-DC33F3823079}.DebugNo3d|Win32.ActiveCfg = DebugNo3d|Win32
+		{860FA172-F9B4-4880-BA87-DC33F3823079}.DebugNo3d|Win32.Build.0 = DebugNo3d|Win32
+		{860FA172-F9B4-4880-BA87-DC33F3823079}.Release|Win32.ActiveCfg = Release|Win32
+		{860FA172-F9B4-4880-BA87-DC33F3823079}.Release|Win32.Build.0 = Release|Win32
+		{860FA172-F9B4-4880-BA87-DC33F3823079}.ReleaseNo3d|Win32.ActiveCfg = ReleaseNo3d|Win32
+		{860FA172-F9B4-4880-BA87-DC33F3823079}.ReleaseNo3d|Win32.Build.0 = ReleaseNo3d|Win32
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal

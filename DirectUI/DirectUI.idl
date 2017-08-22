@@ -1,0 +1,190 @@
+// DirectUI.idl : DirectUI 的 IDL 源
+//
+
+// 此文件将由 MIDL 工具处理以
+// 产生类型库(DirectUI.tlb)和封送处理代码。
+
+import "oaidl.idl";
+import "ocidl.idl";
+//import "dxtrans.idl";
+
+interface IDuiEvent;
+
+[
+	object,
+	uuid(8972C30F-EB8B-4AA0-BFFF-3A38B701D843),
+	dual,
+	nonextensible,
+	helpstring("IDuiControl 接口"),
+	pointer_default(unique)
+]
+interface IDuiControl : IDispatch{
+	// event attributes
+	[propget, id(7000), helpstring("event onmousemove")] HRESULT onmousemove([out, retval] IDispatch** pVal);
+	[propputref, id(7000), helpstring("event onmousemove")] HRESULT onmousemove([in] IDispatch* newVal);
+	[propget, id(7001), helpstring("event onmouseleave")] HRESULT onmouseleave([out, retval] IDispatch** pVal);
+	[propputref, id(7001), helpstring("event onmouseleave")] HRESULT onmouseleave([in] IDispatch* newVal);
+	[propget, id(7002), helpstring("event onmouseout")] HRESULT onmouseout([out, retval] IDispatch** pVal);
+	[propputref, id(7002), helpstring("event onmouseout")] HRESULT onmouseout([in] IDispatch* newVal);
+	[propget, id(7003), helpstring("event onmouseenter")] HRESULT onmouseenter([out, retval] IDispatch** pVal);
+	[propputref, id(7003), helpstring("event onmouseenter")] HRESULT onmouseenter([in] IDispatch* newVal);
+	[propget, id(7004), helpstring("event onmouseover")] HRESULT onmouseover([out, retval] IDispatch** pVal);
+	[propputref, id(7004), helpstring("event onmouseover")] HRESULT onmouseover([in] IDispatch* newVal);
+	[propget, id(7005), helpstring("event onmousehover")] HRESULT onmousehover([out, retval] IDispatch** pVal);
+	[propputref, id(7005), helpstring("event onmousehover")] HRESULT onmousehover([in] IDispatch* newVal);
+	[propget, id(7006), helpstring("event onkeydown")] HRESULT onkeydown([out, retval] IDispatch** pVal);
+	[propputref, id(7006), helpstring("event onkeydown")] HRESULT onkeydown([in] IDispatch* newVal);
+	[propget, id(7007), helpstring("event onkeyup")] HRESULT onkeyup([out, retval] IDispatch** pVal);
+	[propputref, id(7007), helpstring("event onkeyup")] HRESULT onkeyup([in] IDispatch* newVal);
+	[propget, id(7008), helpstring("event onchar")] HRESULT onchar([out, retval] IDispatch** pVal);
+	[propputref, id(7008), helpstring("event onchar")] HRESULT onchar([in] IDispatch* newVal);
+	[propget, id(7009), helpstring("event onsyskey")] HRESULT onsyskey([out, retval] IDispatch** pVal);
+	[propputref, id(7009), helpstring("event onsyskey")] HRESULT onsyskey([in] IDispatch* newVal);
+	[propget, id(7010), helpstring("event onkillfocus")] HRESULT onkillfocus([out, retval] IDispatch** pVal);
+	[propputref, id(7010), helpstring("event onkillfocus")] HRESULT onkillfocus([in] IDispatch* newVal);
+	[propget, id(7011), helpstring("event onblur")] HRESULT onblur([out, retval] IDispatch** pVal);
+	[propputref, id(7011), helpstring("event onblur")] HRESULT onblur([in] IDispatch* newVal);
+	[propget, id(7012), helpstring("event onsetfocus")] HRESULT onsetfocus([out, retval] IDispatch** pVal);
+	[propputref, id(7012), helpstring("event onsetfocus")] HRESULT onsetfocus([in] IDispatch* newVal);
+	[propget, id(7013), helpstring("event onfocus")] HRESULT onfocus([out, retval] IDispatch** pVal);
+	[propputref, id(7013), helpstring("event onfocus")] HRESULT onfocus([in] IDispatch* newVal);
+	[propget, id(7014), helpstring("event onbuttondown")] HRESULT onbuttondown([out, retval] IDispatch** pVal);
+	[propputref, id(7014), helpstring("event onbuttondown")] HRESULT onbuttondown([in] IDispatch* newVal);
+	[propget, id(7015), helpstring("event onbuttonup")] HRESULT onbuttonup([out, retval] IDispatch** pVal);
+	[propputref, id(7015), helpstring("event onbuttonup")] HRESULT onbuttonup([in] IDispatch* newVal);
+	[propget, id(7016), helpstring("event ondblclick")] HRESULT ondblclick([out, retval] IDispatch** pVal);
+	[propputref, id(7016), helpstring("event ondblclick")] HRESULT ondblclick([in] IDispatch* newVal);
+	[propget, id(7017), helpstring("event oncontextmenu")] HRESULT oncontextmenu([out, retval] IDispatch** pVal);
+	[propputref, id(7017), helpstring("event oncontextmenu")] HRESULT oncontextmenu([in] IDispatch* newVal);
+	[propget, id(7018), helpstring("event onvscroll")] HRESULT onvscroll([out, retval] IDispatch** pVal);
+	[propputref, id(7018), helpstring("event onvscroll")] HRESULT onvscroll([in] IDispatch* newVal);
+	[propget, id(7019), helpstring("event onhscroll")] HRESULT onhscroll([out, retval] IDispatch** pVal);
+	[propputref, id(7019), helpstring("event onhscroll")] HRESULT onhscroll([in] IDispatch* newVal);
+	[propget, id(7020), helpstring("event onscrollwheel")] HRESULT onscrollwheel([out, retval] IDispatch** pVal);
+	[propputref, id(7020), helpstring("event onscrollwheel")] HRESULT onscrollwheel([in] IDispatch* newVal);
+	[propget, id(7021), helpstring("event onsize")] HRESULT onsize([out, retval] IDispatch** pVal);
+	[propputref, id(7021), helpstring("event onsize")] HRESULT onsize([in] IDispatch* newVal);
+	//[propget, id(7022), helpstring("event onsetcursor")] HRESULT onsetcursor([out, retval] IDispatch** pVal);
+	//[propputref, id(7022), helpstring("event onsetcursor")] HRESULT onsetcursor([in] IDispatch* newVal);
+	[propget, id(7023), helpstring("event onmeasureitem")] HRESULT onmeasureitem([out, retval] IDispatch** pVal);
+	[propputref, id(7023), helpstring("event onmeasureitem")] HRESULT onmeasureitem([in] IDispatch* newVal);
+	[propget, id(7024), helpstring("event ondrawitem")] HRESULT ondrawitem([out, retval] IDispatch** pVal);
+	[propputref, id(7024), helpstring("event ondrawitem")] HRESULT ondrawitem([in] IDispatch* newVal);
+	[propget, id(7025), helpstring("event ontimer")] HRESULT ontimer([out, retval] IDispatch** pVal);
+	[propputref, id(7025), helpstring("event ontimer")] HRESULT ontimer([in] IDispatch* newVal);
+	[propget, id(7026), helpstring("event onnotify")] HRESULT onnotify([out, retval] IDispatch** pVal);
+	[propputref, id(7026), helpstring("event onnotify")] HRESULT onnotify([in] IDispatch* newVal);
+	[propget, id(7027), helpstring("event oncommand")] HRESULT oncommand([out, retval] IDispatch** pVal);
+	[propputref, id(7027), helpstring("event oncommand")] HRESULT oncommand([in] IDispatch* newVal);
+	[propget, id(7028), helpstring("event onload")] HRESULT onload([out, retval] IDispatch** pVal);
+	[propputref, id(7028), helpstring("event onload")] HRESULT onload([in] IDispatch* newVal);
+	[propget, id(7029), helpstring("event onunload")] HRESULT onunload([out, retval] IDispatch** pVal);
+	[propputref, id(7029), helpstring("event onunload")] HRESULT onunload([in] IDispatch* newVal);
+	[propget, id(7030), helpstring("event onpropertychange")] HRESULT onpropertychange([out, retval] IDispatch** pVal);
+	[propputref, id(7030), helpstring("event onpropertychange")] HRESULT onpropertychange([in] IDispatch* newVal);
+	[propget, id(7150), helpstring("event onclick")] HRESULT onclick([out, retval] IDispatch** pVal);
+	[propputref, id(7150), helpstring("event onclick")] HRESULT onclick([in] IDispatch* newVal);
+
+	[propget, id(1), helpstring("属性 tagName")] HRESULT tagName([out, retval] BSTR* pVal);
+	[propget, id(2), helpstring("属性 ID")] HRESULT ID([out, retval] BSTR* pVal);
+	[id(3), helpstring("方法eventHandler")] HRESULT eventHandler([in] VARIANT nameOrObject, [in,optional] VARIANT callback, [out,retval] IDispatch** handler);
+	[id(8000), helpstring("方法setAttribute")] HRESULT set([in] BSTR name, [in] VARIANT value);
+	[id(8001), helpstring("方法getAttribute")] HRESULT get([in] BSTR name, [out,retval] VARIANT* val);
+	[id(8002), helpstring("方法removeAttribute")] HRESULT remove([in] BSTR name);
+	[propget, id(8003), helpstring("属性 children")/*, defaultcollelem*/] HRESULT children([out, retval] IDispatch** pVal);
+	[id(8032), helpstring("方法setStyleAttribute")] HRESULT setStyle([in] BSTR stylename, [in] BSTR stylevalue);
+	[propget, id(8033), helpstring("属性 parent")] HRESULT parent([out, retval] IDispatch** pVal);
+	[propget, id(8034), helpstring("属性 text")] HRESULT text([out, retval] BSTR* pVal);
+	[propput, id(8034), helpstring("属性 text")] HRESULT text([in] BSTR newVal);
+	[id(8035), helpstring("方法focus")] HRESULT focus(void);
+	[id(8036), helpstring("方法activate")] HRESULT activate(void);
+	[propget, id(8037), helpstring("属性 visible")] HRESULT visible([out, retval] VARIANT_BOOL* pVal);
+	[propput, id(8037), helpstring("属性 visible")] HRESULT visible([in] VARIANT_BOOL newVal);
+	[propget, id(8038), helpstring("属性 enabled")] HRESULT enabled([out, retval] VARIANT_BOOL* pVal);
+	[propput, id(8038), helpstring("属性 enabled")] HRESULT enabled([in] VARIANT_BOOL newVal);
+	[propget, id(8039), helpstring("属性 childCount")] HRESULT childCount([out, retval] LONG* pVal);
+	[id(8040), helpstring("方法getChild")] HRESULT getChild([in] VARIANT index, [out,retval] IDispatch** child);
+	[id(8041), helpstring("方法attachObject")] HRESULT attachObject([in] IDispatch* extObject);
+	[id(8042), helpstring("方法detachObject")] HRESULT detachObject([in] IDispatch* extObject);
+	[propget, id(8043), helpstring("属性 filter")] HRESULT filter([out, retval] IDispatch** pVal);
+	[id(8044), helpstring("方法appendChild")] HRESULT appendChild([in] IDispatch* newChild, [out,retval] IDispatch** node);
+	[id(8045), helpstring("方法insertBefore")] HRESULT insertBefore([in] IDispatch* newChild, [in,optional] VARIANT refChild, [out,retval] IDispatch** node);
+	[propput, id(8046), helpstring("属性 innerXML")] HRESULT innerXML([in] BSTR newVal);
+	[propput, id(8047), helpstring("属性 outerXML")] HRESULT outerXML([in] BSTR newVal);
+};
+[
+	object,
+	uuid(40ECA094-5E47-41C0-8AE1-EB4A6210D592),
+	dual,
+	nonextensible,
+	helpstring("IDuiWindow 接口"),
+	pointer_default(unique)
+]
+interface IDuiWindow : IDispatch{
+	[propget, id(1), helpstring("属性 window")] HRESULT window([out, retval] IDispatch** pVal);
+	[propget, id(2), helpstring("属性 event")] HRESULT event([out, retval] IDispatch** pVal);
+	[propget, id(3), helpstring("属性 external")] HRESULT external([out, retval] IDispatch** pVal);
+	[propget, id(4), helpstring("属性 focus")] HRESULT focus([out, retval] IDispatch** pVal);
+	[propget, id(5), helpstring("属性 body")] HRESULT body([out, retval] IDispatch** pVal);
+	[id(15), helpstring("show a alert message")] HRESULT alert([in] BSTR Content, [in,defaultvalue("提示信息")] BSTR Caption);
+	[id(16), helpstring("方法close")] HRESULT close(void);
+	[id(17), helpstring("方法createElement")] HRESULT createElement([in] BSTR eTag, [out,retval] IDispatch** newElem);
+	[id(18), helpstring("方法setInterval")] HRESULT setInterval([in] VARIANT callback, [in] LONG msec, [out,retval] LONG* timerId);
+	[id(19), helpstring("方法setTimeout")] HRESULT setTimeout([in] VARIANT callback, [in] LONG msec, [out,retval] LONG* timerId);
+	[id(20), helpstring("方法clearInterval")] HRESULT clearInterval([in] LONG timerId);
+	[id(21), helpstring("方法clearTimeout")] HRESULT clearTimeout([in] LONG timerId);
+	[id(22), helpstring("方法createEvent")] HRESULT createEvent([in] BSTR eventName, [out,retval] IDispatch** pVal);
+	[id(23), helpstring("方法fireEvent")] HRESULT fireEvent([in] IDuiControl* ctrl, [in] IDuiEvent* eventObj);
+};
+[
+	object,
+	uuid(E13DE7C7-893D-4EFA-B9DF-2F3D3682FAF3),
+	dual,
+	nonextensible,
+	helpstring("IDuiEvent 接口"),
+	pointer_default(unique)
+]
+interface IDuiEvent : IDispatch{
+	[propget, id(1), helpstring("属性 name")] HRESULT name([out, retval] BSTR* pVal);
+	[propget, id(2), helpstring("属性 src")] HRESULT src([out, retval] IDispatch** pVal);
+	[propget, id(3), helpstring("属性 x")] HRESULT x([out, retval] LONG* pVal);
+	[propget, id(4), helpstring("属性 y")] HRESULT y([out, retval] LONG* pVal);
+	[propget, id(5), helpstring("属性 cancelBubble")] HRESULT cancelBubble([out, retval] VARIANT_BOOL* pVal);
+	[propput, id(5), helpstring("属性 cancelBubble")] HRESULT cancelBubble([in] VARIANT_BOOL newVal);
+	[propget, id(6), helpstring("属性 returnValue")] HRESULT returnValue([out, retval] VARIANT_BOOL* pVal);
+	[propput, id(6), helpstring("属性 returnValue")] HRESULT returnValue([in] VARIANT_BOOL newVal);
+	[propget, id(7), helpstring("属性 propertyName")] HRESULT propertyName([out, retval] BSTR* pVal);
+};
+[
+	uuid(ADBFE2FF-C8B0-4DD9-94DF-89CD766D9DC9),
+	version(1.0),
+	helpstring("DirectUI 1.0 类型库")
+]
+library DirectUILib
+{
+	importlib("stdole2.tlb");
+	[
+		uuid(5A74A1BE-39E8-4AF5-8889-2D317DDE13FB),
+		helpstring("DuiControl Class")
+	]
+	coclass DuiControl
+	{
+		[default] interface IDuiControl;
+	};
+	[
+		uuid(BBB4FFE9-0D7B-49F8-93B6-DBDE95341ED1),
+		helpstring("DuiWindow Class")
+	]
+	coclass DuiWindow
+	{
+		[default] interface IDuiWindow;
+	};
+	[
+		uuid(227D7467-FF49-498C-9720-AAA20FCCDABB),
+		helpstring("DuiEvent Class")
+	]
+	coclass DuiEventObj
+	{
+		[default] interface IDuiEvent;
+	};
+};

@@ -1,0 +1,16 @@
+﻿<Window title="Layered Window with browser" transparent="1" position="50 50 800 600">
+  <Resource>
+    <StyleSheet>
+      button {cursor:hand; border:solid 1 red; color:black; margin:20 5; height:40}
+      button :hot {border:solid 1 blue; color:blue}
+    </StyleSheet>
+  </Resource>
+  <body style="background:lightpink; padding:20 10; layout:vertical; hittest-as:caption; clip:roundrect 20" background-alpha="240">
+    <random style="font:微软雅黑 48; color:purple; glowcolor:yellow; glowthick:5">测试透明窗口的子窗口
+    </>
+    <button onclick="alert('\''+text+'\' has been clicked.')">无句柄按钮</>
+	<hwnd class="button" style="height:40; margin:0 5">有句柄按钮</>
+	<object id="obj" progid="Shell.Explorer" bind-class="Internet Explorer_Server" bind-type="5"
+		bind-messages="timer 0x0118" style="width:100%;height:300;"  location="www.google.com">浏览器控件</>
+  </body>
+</Window>

@@ -1,0 +1,122 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+
+<head>
+  <meta http-equiv="content-type" content="text/html; charset=utf-8" />
+  <link href="modules/stree/stree.css" rel="StyleSheet" type="text/css" />
+	<style type="text/css">
+		body { margin:0;width:100%;height:100%; }
+	</style>
+	
+	<script language=javascript src="hack.js"></script>
+	<script language=javascript src="modules/jquery/jquery-1.4.1.js"></script>
+	<script language=javascript src="modules/stree/stree.js"></script>
+	<script language=javascript>
+		$(function () {
+			//top.context.twin = window;
+//			window.jump = top.context.open = function (id) {
+//				if (!id) return;
+//				//$('.'+$c.content+'[artid='+id+']').click();
+//				top.context.update($('.'+$c.content+'[artid='+id+']'));
+//				$('#tree-click').get(0).click();
+//			};
+//			
+			// 首先替换掉树插件的默认 baseUrl 和 absolutify 函数，用于本地资源读取
+			$t.absolutify = absolutify;
+			$t.baseUrl = function(ctx) {
+				if (!ctx) return null;
+				ctx = $(ctx).closest('.'+$c.node);
+				if (ctx.length==0 || ctx.parents('#localtree').length==0) return null;
+
+				var base = $('#localcontent').attr('baseurl');
+				if (!base) return null;				
+				var subs = ctx.parentsUntil('#localtree').map(function(i,n){
+								return $(this).children('.'+$c.content).attr('src');
+							}).get().reverse().join('\\');
+//				return base + (subs?'\\'+subs:'');
+				return [base,subs||'.',''].join('\\');
+			};
+			
+			// 提供本地资源读取所需的特殊AJAX请求
+			$t.getAjax = function(_url, ctx) {
+				// 文件协议两种格式：file://...  d:\...
+				if (_url.indexOf('file:') != 0 && _url.indexOf(':\\') < 0) return null;
+				try { duiBrowser.visible; } catch(e) { return null; }
+				return function(url, fn) {
+					if (url.indexOf('file:')==0) {
+						var pre = 'file:///';
+						var len = pre.length;
+						if (url.indexOf(pre) != 0) len --;
+						url = url.substring(len, url.length).replace(/\//g, '\\');
+					}
+					try { duiBrowser.readFromFile(url, fn, ctx.is('#localsamples *')); } catch(e) { if (fn) fn(''); }
+				};
+			};
+			
+			// 添加本地缓存的 baseUrl
+			try { $('#localcontent').attr('baseurl', duiBrowser.host.cacheDir/*+'\\'*/); }catch(e){}
+	
+			// 创建树
+			$('#container').stree(function(context){
+				//this.find('.'+$c.content+':not([title])').each(function(){$(this).attr('title',$(this).text());});
+				this.find('[artid]:not([href])').each(function(){$(this).attr('href','http://www.huyuhan.com/index.php?option=com_content&id='+$(this).attr('artid'));});
+			});
+			
+			// 强制所有 A 元素导航目标都是内容窗口
+			$('a[target!="hc_content"]').live('mouseover', function(){
+				$(this).attr('target', 'hc_content');
+			});
+			
+			// 设定某个树节点到导航缓存
+			top.context.update = function(_this) {
+				if (typeof _this == 'string') _this = $('.'+$c.content+'[artid='+_this+']');
+				// 缓存上下文数据
+				top.context.isLocal = _this.is('#localtree *');
+				top.context.codeOnly = _this.is('#localsamples *');
+				top.context.href = absolutify(_this.attr('href'), $t.baseUrl(_this));
+				top.context.lastPosition = []; // 保存的都是 .tree-content 元素
+				_this.parentsUntil('#container').filter('.'+$c.node).each(function(){
+					top.context.lastPosition.push($(this).children('.'+$c.content));
+				});
+			};
+			
+			// 监视树节点点击
+			$('.'+$c.content).live('click', function(){
+				var _this = $(this);
+				if (!_this.attr('href')) return;
+				
+				top.context.update(_this);
+				
+				function getQuery(attrs) {
+					var ret = [];
+					for (var i=0; i<attrs.length; i++) {
+						var val = _this.attr(attrs[i]);
+						if (attrs[i]=='href') val = absolutify(val, $t.baseUrl(_this));
+						if (val) {
+							ret.push(attrs[i] + '=' + encodeURIComponent(val));
+						}
+					}
+					return ret.join('&');
+				}
+				
+				$('#tree-click')/*.attr('href', 'hc-content.htm?' + getQuery(['href','type','subtype','data','title']))*/.get(0).click();
+			});
+
+		});
+	</script>
+</head>
+
+<body>
+	<div id="container" style="width:100%;height:100%">
+		<div id="localtree"><span id="localcontent" title="搜索本地内容" _text="本地内容">本地内容</span>
+			<div id="localarticles"><span src="articles" title="知识文章" _text="知识文章">知识文章</span></div>
+			<div id="localsamples"><span src="samples" title="示例代码" _text="示例代码">示例代码</span></div>
+		</div>
+		<div><span src="http://www.huyuhan.com/helpcat.htm" title="互联网上的帮助" _text="在线资源">在线资源</span>
+			<div class="tree-loading"><span>Loading...</span></div>
+		</div>
+	</div>
+	<a id="tree-click" href="hc-content.htm" target="hc_content" style="display:none"></a>
+</body>
+</html>

@@ -1,0 +1,34 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Window title="REDirectUI Demo View">
+  <config transparent1="1" />
+  <Resource>
+    <style targetName="button">cursor:hand; border:solid 1 red; color:black; margin:20 5; height:40</style>
+    <style targetName="button" targetState="hot">border:solid 1 blue; color:blue</style>
+    <StoryBoard id="ani">
+      <FrameSet targetType="float" target="earth.transform.pre" targetAttribute="rotationY" 
+        reverse="false" repeat="forever" from="0" to="360" duration="20" />
+      <FrameSet targetType="float" target="logo.transform" targetAttribute="rotationY" 
+        reverse="false" repeat="forever" from="0" to="360" duration="3" idle="5" />
+      <FrameSet targetType="float" target="url.transform" targetAttribute="rotationX" 
+        reverse="false" repeat="forever" from="0" to="360" duration="1" delay="3" idle="7" />
+   </>
+  </Resource>
+  <body style="background1:gray; padding:20 10; layout:vertical;" background-alpha="150">
+    <random style="font:微软雅黑 24;color:blue">2D/3D 混合测试</random>
+    <button onclick="ani.started?ani.stop('end'):ani.start()">启动/停止动画</button>
+    <button onclick="ani.paused?ani.resume():ani.pause()">暂停/恢复动画</button>
+    <d3d id="d3d" style="visual:none;height:250;background:blue;clip:ellipse;color:white;text-style:middle center;border:red;padding:10" hittest-as="caption"
+           onload="stories['ani'].start()">
+      <scene as="precontent" mouselight=".8 0.2 .5"><camera position="0,0,-6" Ortho1="1" />
+        <model name="earth" src="earth.x" parameters="g_vLightColor1:1 0 0; Specular:0 0 0" 
+              transform="scale:4 4 4; Position:0 2 10; YawPitchRoll:-15 -55 -15"></model>
+        <model name="logo" type="text" text="REDirectUI Inside" font="微软雅黑" center="1" transform="position:0 -.5 0"
+            parameters="g_vLightColor:1 0.5 0.5;"
+            onprepareeffect1="currentEffect.g_vLightPosition=Vector4d(20,20,-20)">
+           <model name="url" type="text" text="www.huyuhan.net" font="微软雅黑" center="1" transform="scale:.6 .6 .6; position:0 -.6 0" />
+        </model>
+      </>
+      神马都是浮云
+    </>
+  </body>
+</Window>

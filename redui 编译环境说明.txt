@@ -1,0 +1,5 @@
+﻿redui_src 编译环境说明：
+
+1、在VS2008里编译
+2、redui编译需要安装 DX SDK，版本不低于9c
+3、duibrowser编译需要安装WTL，版本不低于8

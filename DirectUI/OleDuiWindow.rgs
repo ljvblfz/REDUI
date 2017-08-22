@@ -1,0 +1,26 @@
+HKCR
+{
+	DirectUI.Window.1 = s 'DuiWindow Class'
+	{
+		CLSID = s '{BBB4FFE9-0D7B-49F8-93B6-DBDE95341ED1}'
+	}
+	DirectUI.Window = s 'DuiWindow Class'
+	{
+		CLSID = s '{BBB4FFE9-0D7B-49F8-93B6-DBDE95341ED1}'
+		CurVer = s 'DirectUI.Window.1'
+	}
+	NoRemove CLSID
+	{
+		ForceRemove {BBB4FFE9-0D7B-49F8-93B6-DBDE95341ED1} = s 'DuiWindow Class'
+		{
+			ProgID = s 'DirectUI.Window.1'
+			VersionIndependentProgID = s 'DirectUI.Window'
+			ForceRemove 'Programmable'
+			InprocServer32 = s '%MODULE%'
+			{
+				val ThreadingModel = s 'Apartment'
+			}
+			'TypeLib' = s '{ADBFE2FF-C8B0-4DD9-94DF-89CD766D9DC9}'
+		}
+	}
+}

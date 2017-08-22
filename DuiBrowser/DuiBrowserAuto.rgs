@@ -1,0 +1,11 @@
+HKCR
+{
+	NoRemove AppID
+	{
+		'%APPID%' = s 'DuiBrowserAuto'
+		'DuiBrowserAuto.EXE'
+		{
+			val AppID = s '%APPID%'
+		}
+	}
+}

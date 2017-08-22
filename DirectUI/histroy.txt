@@ -1,0 +1,171 @@
+REDirectUI 渲染引擎版本历史：
+
+v0.9.130
+============
+- 图片资源添加 clip 属性，用来显示裁剪的区域图片。在TILE模式下，此属性无效；在squares模式下，显示为九宫格；其它模式仅显示被裁剪的区域
+- 九宫格同时支持GDI渲染和D3D渲染
+- 插件添加了 GetClipRegion 和 GetChildrenClipRegion 操作
+- 正式解决了垂直居中或底部对齐的文本样式
+- 增加 GlowColor/GlowThick 样式，用来表示发光文字的外围轮廓的颜色和厚度，颜色设置为 0XFFFFFFFF 或者 厚度小于1时文字无轮廓。GlowThick 默认值为1。
+  此样式在 GDI/GDI+ 中同时实现。
+  注意：GlowThick 小于等于3时文字看起来像阴影；超过3时才有明显的轮廓；10 以上可模拟VISTA标题栏的文本背景
+- 增加GDILayer::BindWindow绑定子窗口的功能，用于在LAYERED模式下显示子窗口
+
+v0.9.129
+============
+- 添加全新的插件框架，通用性强，插件制作简单，插件调用简单，插件制作者不受跨模块限制
+- 可在插件调用过程中动态改变插件链执行顺序
+- 插件框架的核心是操作码，其相关的结构、枚举、宏定义、注释、接口全自动生成，扩充方便
+- 插件必须使用与核心完全一致的操作码版本才能共同运作
+- 核心已按照新的插件框架重新实现
+
+v0.9.128
+============
+- D3D 渲染层完成，包括场景、模型、实体、动画、B样条、特效、HLSL、特效变量的自动化、模型的艺术家参数
+
+v0.7.32
+============
+- 动态对象库添加命名项支持
+- XML-DOM 可无缝导航至 XAML-DOM，不必调用FindName
+- 对象模板库支持基类成员直接访问
+- 可编辑控件添加 TOM 支持
+
+v0.7.31
+============
+- 调整ActiveX激活时机，避免偶尔在未执行激活的情况下先执行UI激活
+- 修复无窗口编辑器左上角鼠标不响应的问题
+- 添加 DUIFLAG_NOCHILDREN 控件标志位，具有此标志位的控件不处理其子控件的绘制和事件，但子控件的DOM仍可访问
+- DuiEvent结构添加了returnValue属性，可控制事件立即停止处理，阻止后续脚本执行和冒泡
+- 解决了XAML控件和标准控件的 onload 事件同名冲突的问题，仅处理XAML控件的事件
+- 对象构造模板库添加新特性，方法支持可选参数
+- 修改了对象构造模板库中的一个BUG，当基类中也使用对象映射表时，未调整this指针的偏移值
+- 深度优化事件回调机制，任何控件类型的事件脚本设置方式完全相同，支持用户定义事件，一个通用的eventHandler方法解决所有事件设置
+
+v0.7.30
+============
+- 滚动条正式支持 overflow:scroll，强制显示垂直滚动条
+- 添加无窗口的编辑框支持(BETA)，早期版本的有窗口编辑框仍然保留，使用不同的标签名称
+- 添加 XAML 标签，可加载外部XAML文件，也可加载XAP应用。可配置是否允许加载托管运行时库，默认禁止加载。如果禁止加载，使用高级托管功能或者代码隐藏的XAML/XAP不能正确渲染。
+
+v0.6.27
+============
+- 增强了XML解析器的功能，能设置多种纯文本的标签，如 script/pre/style
+- 重新优化样式存储器访问方式，保存中间参数，带参数直接读取计算后的最终值
+- 添加百分比支持，目前可支持 width/height/min-width 属性
+- 添加 onpropertychange 事件和 nmc_propertychange 通知
+- 所有有句柄的控件（如Text(Edit)）默认改成内联块样式
+- 重新设计 OCX 加载方式，容器无需寄宿在独立的窗口中，一个容器管理多个站点，支持OCX初始化，支持在JS脚本中响应 OCX 事件
+- 优化渲染表面，不仅主表面可拥有离屏表面，离屏表面也可拥有后备离屏表面
+- 修复了大量未完成的特性
+
+v0.6.21
+============
+- flag 样式属性正式生效，控件预置标志和样式指定的标志合并
+- 所有鼠标键盘事件在控件禁用的情况下不做处理
+- 段落控件做了更精细的控制
+- 内联元素支持背景色
+- 已修改：可视区域之外的元素背景未被绘制，即使滚动到可视区域之内
+- 已修改：估算内容大小时，某个地方忘记首先取消滚动条，导致滚动条区域被计算两次
+- 添加 line-distance 样式属性
+- 重大错误更新：当用户机器上未安装脚本调试器时，渲染引擎未能修正此状态位，导致系统脚本引擎异常退出
+- 已修改系列错误
+
+v0.6.20
+============
+- 脚本可直接访问对象的属性，无需再用get/set方法
+- 开放了大量的 API，包括元素访问和部分窗口访问
+- 提供 CDuiElement 封装类
+- 提供通知消息，如果窗口的父窗口跟DUI窗口本身是同一进程，则消息发送给父窗口，否则消息发送给窗口本身
+- 增加集合类对象
+- 控件对象添加 children 属性
+
+v0.5.19
+============
+- 支持 URL 异步下载，从互联网获取的图片资源可延迟加载
+- 结构体系中添加 Connector 模式
+- 修改 img 元素在异步模式时图片位置未更新的问题
+- 修改解析ARGB字符串时的A值特定条件下不正确的问题
+- 添加了导出函数，用以针对某DUI窗口计算脚本表达式结果，可用于运行中检查状态
+- 控件添加属性删除操作
+
+v0.5.18
+============
+- 添加了内联元素标签：
+	strong(==b) u(underline) i(italic) s(strike) big(larger 20% than current font) small(smaller 20% than current font)
+- 修改了内联元素标签：
+	WhiteSpace(从s改为w)，因为 s 在HTML中也是等效于 strike 标签的，这里统一风格
+	Img(从i改为img),i的含义现在是Italic，也是为了跟HTML统一
+- 修改了XML解析中字符串比较的一处BUG
+
+v0.5.17
+============
+- 修改一个BUG，该BUG在特殊条件下会导致无限递归并导致栈溢出。
+- 添加 GDI+ 模式下的字符串测量功能
+- 修改一个BUG，内联元素设置的颜色和字体无效
+
+v0.5.16
+============
+- 优化了显示性能，测量与显示分离
+- 添加了 min-width 样式
+- 添加了水平滚动条支持
+- 重写流式布局算法，极大提高了运算效率
+
+v0.5.3
+============
+各种图片文件或资源，支持绝对或相对路径的图片URL，图片可命名，无名图片可自动命名，支持的图片类型包括PNG/JPG/GIF/BMP/ICO/...等几乎所有格式。
+样式表资源支持的限定条件：控件类型、控件ID、控件状态、参考样式。
+脚本资源，可直接嵌入脚本代码(JAVASCRIPT)，或者链接一个外部的JS文件。
+控件状态，包含的类型：focused selected disabled hot pushed checked readonly captured hidden hover expanded，可直接用于样式表的控件状态限定条件。
+控件私有样式，每个控件都可定义私有样式。样式间的继承和存储经过特别优化。
+控件特性标志：tabstop wantreturn setcursor selectable expandable
+样式支持的 overflow 类型：auto hidden scroll
+overflow-include-offset: true false
+样式支持的 display 类型：none inline block inlineblock
+样式支持的 color 类型：transparent  十六进制表示法(#ab03f2) 系统命名颜色索引(background/activecaption等) 命名颜色(white/black/red...)
+样式支持的 font-family：TRUETYPE字体名称。
+样式支持的 font-style 类型：italic underline strikeout thin extralight ultralight light regular medium semibold demibold bold extrabold ultrabold heavy black normal
+样式支持的 font-size 类型：不同于CSS中的含义，用正负值表示增加或减小字体大小。
+样式支持的 pen-style 类型：solid dash dot dashdot dashdotdot null insideframe，表示画笔种类。
+样式支持的 text-style 类型：left center right top middle bottom wordbreak sigleline expandtabs noclip externalleading noprefix internal editcontrol path_ellipsis end_ellipsis modifystring rtlreading word_ellipsis nofullwidthcharbreak hideprefix prefixonly，控制文本输出方式。
+样式支持的 layout 类型：horizontal vertical tile dialog V-Splitter H-Splitter Page...，代表不同的布局模式。
+样式支持的 visual 类型：button option checkbox groupbox h_gradient v_gradient cmdlink...，代表不同的视觉样式。
+样式支持的 stretch 类型：move_x move_y size_x size_y，仅当布局模式为 dialog 时有效。
+样式支持的 cursor 类型：arrow default(arrow) text ibeam(text) wait cross uparrow sizenwse sizenesw sizewe sizens move no hand help appstarting
+样式支持的 font 类型：可以是 font-family font-style font-size 三种样式的任意组合
+样式支持的 border 类型：可以是 pen-style width color 三种样式的任意组合
+样式支持的 image 类型：可以是 image-id image-mode 的组合，其中image-mode的可选择 normal center tile stretch 中的一个。
+样式支持的 background 类型：可以是 color 类型，也可以是 image 类型。
+样式支持的 filter 类型：Gradient Alpha BasicImage Blur Emboss Engrave Glow MotionBlur Shadow Wave RandomBars Fade Barn Blinds Checkerboard GradientWipe Inset Iris Pixelate RadialWipe RandomDissolve Slide Spiral Stretch Strips Wheel Zigzag，具体支持的动态静态滤镜数量在不同操作系统上可能不同，每种滤镜都支持不同的属性。
+控件通用属性，所有控件都能使用的属性，被 REDirectUI 引擎直接支持，例如 id title style text onxxx事件。
+样式属性，控件的私有样式既可以打包在 style 属性里，也能定义成普通的控件属性，引擎内部自动识别。
+样式关联属性，某些样式需要访问控件的特定属性，这类属性是样式相关的，例如当 visual=h_gradient 时，需要为控件指定 gradient-color 属性值代表渐变颜色集合。
+
+内置的内联元素：
+ a - Anchor|Link 超链接元素，功能与HTML中的A相同
+ b - Bold|Strong 包含的文本使用粗体
+ i - Italic 包含的文本使用斜体
+ u - Underline 包含的文本使用下划线
+ s - Strike 包含的文本使用删除线
+ big - 包含的文本使用比当前字体更大的字体
+ small - 包含的文本使用比当前字体更小的字体
+ f - Font 包含的文本使用指定的字体。支持的属性：
+		size - 字体大小变化值，正为增大，负为减小，数值类型，单位 em（参考 LOGFONT 中 lfHeight 的单位）。
+		face - 字体名称。字符串类型，系统中安装的 TRUETYPE 字体名称
+		color - 【样式属性】字体颜色。
+		
+ w - WhiteSpace 包含一段空白。支持的属性：
+		width - 空白的宽度，数值类型，单位像素，如果不指定，使用默认值 12。
+
+ p - Paragraph 包含的文本是一个独立的段落，在新行开始绘制。支持的属性：
+		linespace - 行间距，数值类型，单位像素，默认 5。
+		indent - 整段缩进，数值类型，单位像素，默认 0。
+
+ br - LineBreak 插入一个换行
+ hr - HorizontalLine 插入一个水平线。支持的属性：
+		width - 【样式属性】水平线宽度。如果没有指定，或者值是 0，表示从当前位置一直绘制到父容器元素客户区的最右边。
+		color - 【样式属性】线条颜色。默认为 RGB(145,146,119)。
+
+ img - 在当前位置插入一个图片。支持的属性：
+		width - 【样式属性】图片宽度。如果未指定，或者值是 0，表示使用图片实际宽度。
+		height - 【样式属性】图片高度。如果未指定，或者值是 0，表示使用图片实际高度。
+		src - 图片来源。字符串类型，图片在资源标签中定义的 ID 值。
